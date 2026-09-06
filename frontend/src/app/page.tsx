@@ -330,11 +330,16 @@ export default function VoiceDashboard() {
       ws.current.binaryType = "arraybuffer";
 
       ws.current.onopen = () => {
-        // Initialize MediaRecorder — but DON'T start it yet.
-        // It starts automatically after AI greeting finishes speaking (via utterance.onend).
-        mediaRecorder.current = new MediaRecorder(streamRef.current!, {
-          mimeType: "audio/webm;codecs=opus",
-        });
+        // Initialize MediaRecorder safely for cross-browser support (Safari does not support webm)
+        const mimeOptions = "audio/webm;codecs=opus";
+        if (MediaRecorder.isTypeSupported(mimeOptions)) {
+          mediaRecorder.current = new MediaRecorder(streamRef.current!, {
+            mimeType: mimeOptions,
+          });
+        } else {
+          // Fallback to default browser codec (usually audio/mp4 on Safari)
+          mediaRecorder.current = new MediaRecorder(streamRef.current!);
+        }
 
         mediaRecorder.current.ondataavailable = (e) => {
           if (
