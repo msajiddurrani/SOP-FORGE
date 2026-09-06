@@ -159,6 +159,10 @@ export default function VoiceDashboard() {
         }, 800);
       };
 
+      // Prevent garbage collection bug on Chrome/Safari which stops onend from firing
+      (window as any).currentUtterance = utterance;
+      window.speechSynthesis.speak(utterance);
+
       utterance.onerror = () => {
         setIsAiSpeaking(false);
         isAiSpeakingRef.current = false;
