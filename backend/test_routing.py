@@ -9,10 +9,11 @@ from agent import evaluate_intent_and_routing
 async def main():
     test_cases = [
         ("Hello", "respond", None),
+        ("My computer is showing a blue screen error", "transfer", "IT_Support"),
         ("Mera laptop start nahi ho raha IT se connect karo", "transfer", "IT_Support"),
         ("Salary nahi aayi abhi tak", "transfer", "Accounts_Finance"),
         ("Leave policy kya hai?", "transfer", "General_HR"),
-        ("Mujhe HR se baat karni hai", "transfer", "General_HR"),
+        ("नमस्ते मुझे मदद चाहिए", "respond", None),
     ]
     
     passed = 0
