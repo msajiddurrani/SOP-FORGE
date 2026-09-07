@@ -152,7 +152,7 @@ export default function VoiceDashboard() {
         ) {
           try {
             mediaRecorder.current.stop();
-          } catch (e) {}
+          } catch (e) { }
         }
       };
 
@@ -513,7 +513,7 @@ export default function VoiceDashboard() {
                     mediaRecorder.current.start();
                     setCallStatus("Call Active - Listening...");
                   }
-                } catch (err) {}
+                } catch (err) { }
               }, 100);
             }
           }
@@ -554,7 +554,7 @@ export default function VoiceDashboard() {
                 if (
                   lastSameSender &&
                   lastSameSender.text.trim().toLowerCase() ===
-                    content.trim().toLowerCase()
+                  content.trim().toLowerCase()
                 ) {
                   return prev; // Skip duplicate
                 }
@@ -597,7 +597,7 @@ export default function VoiceDashboard() {
                     vadState.current.idleFrames = 0;
                     mediaRecorder.current.start();
                     console.log('[MediaRecorder] Resumed on backend status event');
-                  } catch (e) {}
+                  } catch (e) { }
                 }
               }
             } else if (data.event === "error") {
@@ -682,7 +682,7 @@ export default function VoiceDashboard() {
         if (mediaRecorder.current.state !== "inactive") {
           mediaRecorder.current.stop();
         }
-      } catch (e) {}
+      } catch (e) { }
       mediaRecorder.current = null;
     }
     if (streamRef.current) {
@@ -756,13 +756,12 @@ export default function VoiceDashboard() {
         <div className={styles.callHeader}>
           <div className={styles.statusBadge}>
             <span
-              className={`${styles.statusDot} ${
-                isCalling
+              className={`${styles.statusDot} ${isCalling
                   ? isAiSpeaking
                     ? styles.speakingDot
                     : styles.activeDot
                   : styles.idleDot
-              }`}
+                }`}
             ></span>
             <span className={styles.statusText}>{callStatus}</span>
           </div>
@@ -778,9 +777,8 @@ export default function VoiceDashboard() {
           {[...Array(32)].map((_, i) => (
             <div
               key={i}
-              className={`${styles.visualizerBar} ${
-                isAiSpeaking ? styles.barSpeaking : ""
-              }`}
+              className={`${styles.visualizerBar} ${isAiSpeaking ? styles.barSpeaking : ""
+                }`}
               ref={(el) => {
                 if (el) visualizerBars.current[i] = el;
               }}
@@ -822,13 +820,12 @@ export default function VoiceDashboard() {
               transcripts.map((item) => (
                 <div
                   key={item.id}
-                  className={`${styles.transcriptBubble} ${
-                    item.sender === "User"
+                  className={`${styles.transcriptBubble} ${item.sender === "User"
                       ? styles.userBubble
                       : item.sender === "System"
-                      ? styles.systemBubble
-                      : styles.aiBubble
-                  }`}
+                        ? styles.systemBubble
+                        : styles.aiBubble
+                    }`}
                 >
                   <div className={styles.bubbleHeader}>
                     <span className={styles.speakerName}>{item.sender}</span>
@@ -851,9 +848,8 @@ export default function VoiceDashboard() {
                 <div className={styles.auroraRing}></div>
                 <div className={styles.organicGlow}></div>
                 <div
-                  className={`${styles.siriGlow} ${
-                    isAiSpeaking ? styles.siriGlowSpeaking : ""
-                  }`}
+                  className={`${styles.siriGlow} ${isAiSpeaking ? styles.siriGlowSpeaking : ""
+                    }`}
                 ></div>
               </>
             )}
@@ -864,9 +860,8 @@ export default function VoiceDashboard() {
               <button
                 id="mute-btn"
                 onClick={toggleMute}
-                className={`${styles.utilityBtn} ${
-                  isMuted ? styles.mutedBtn : ""
-                }`}
+                className={`${styles.utilityBtn} ${isMuted ? styles.mutedBtn : ""
+                  }`}
                 title={isMuted ? "Unmute Mic" : "Mute Mic"}
                 aria-label={isMuted ? "Unmute microphone" : "Mute microphone"}
               >
@@ -903,9 +898,8 @@ export default function VoiceDashboard() {
             <button
               id="call-btn"
               onClick={toggleCall}
-              className={`${styles.voiceBtn} ${
-                isCalling ? styles.endCallBtn : styles.startCallBtn
-              }`}
+              className={`${styles.voiceBtn} ${isCalling ? styles.endCallBtn : styles.startCallBtn
+                }`}
               aria-label={isCalling ? "End call" : "Start call"}
             >
               <div className={styles.btnInnerGlow}></div>
