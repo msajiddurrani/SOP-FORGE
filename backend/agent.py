@@ -13,7 +13,7 @@ load_dotenv()
 # Initialize Groq Model — max_tokens=250 avoids Groq free-tier OTPM 429 errors
 # while still being plenty for concise voice responses + tool calls.
 llm = ChatGroq(
-    model="qwen/qwen3.8-27b",
+    model="llama-3.1-8b-instant",
     temperature=0.2,
     max_tokens=250,
     api_key=os.getenv("GROQ_API_KEY")
