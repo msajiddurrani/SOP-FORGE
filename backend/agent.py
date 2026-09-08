@@ -10,12 +10,11 @@ import json
 
 load_dotenv()
 
-# Initialize Groq Model — max_tokens=250 avoids Groq free-tier OTPM 429 errors
-# while still being plenty for concise voice responses + tool calls.
+# Initialize Groq Model — max_tokens=120 keeps voice responses ultra-short & fast.
 llm = ChatGroq(
     model="llama-3.1-8b-instant",
     temperature=0.2,
-    max_tokens=250,
+    max_tokens=120,
     api_key=os.getenv("GROQ_API_KEY")
 )
 

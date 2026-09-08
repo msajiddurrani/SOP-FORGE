@@ -112,7 +112,7 @@ async def transcribe_audio_groq(audio_data: bytes, websocket: WebSocket) -> str:
             completion = groq_client.audio.transcriptions.create(
                 file=("chunk.webm", audio_data),
                 model="whisper-large-v3-turbo",
-                prompt="English, Urdu, and Roman Urdu only. Common topics: IT support, HR policies, Finance, salary, leave, laptop, password.",
+                prompt="English and Urdu.",
                 response_format="json"
             )
             return completion.text
