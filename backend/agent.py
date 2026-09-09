@@ -12,7 +12,7 @@ load_dotenv()
 
 # Initialize Groq Model — max_tokens=120 keeps voice responses ultra-short & fast.
 llm = ChatGroq(
-    model="llama-3.1-8b-instant",
+    model="qwen/qwen3.8-27b",
     temperature=0.2,
     max_tokens=120,
     api_key=os.getenv("GROQ_API_KEY")
